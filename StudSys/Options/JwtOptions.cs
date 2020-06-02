@@ -8,7 +8,7 @@ using System.Text;
 
 namespace StudSys.Options
 {
-    public class JwtOptions
+    public static class JwtOptions
     {
         public const string Issuer = "EvaSys Issuer"; // издатель токенов
         public const string Audience = "EvaSys Client"; // потребитель токена

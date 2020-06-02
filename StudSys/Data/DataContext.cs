@@ -4,17 +4,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using StudSys.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace StudSys.Data
 {
-    public class DataContext : DbContext
+    public class DataContext :IdentityDbContext<UserModel>
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
-        { 
+        {
         }
 
-        public DbSet<TodoItem> TodoItems { get; set; }
-        public DbSet<Group> Groups { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<TodoItemModel> TodoItems { get; set; }
+        public DbSet<GroupModel> Groups { get; set; }
     }
 }

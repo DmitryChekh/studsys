@@ -13,9 +13,13 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using StudSys.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using StudSys.Options;
+using StudSys.Services.Interfaces;
+using StudSys.Services;
+using StudSys.Models;
 
 namespace StudSys
 {
@@ -36,6 +40,11 @@ namespace StudSys
             services.AddDbContext<DataContext>(
                 options => options.UseSqlServer(connectionString));
 
+            services.AddIdentity<UserModel, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<DataContext>();
+
+            services.AddScoped<IIdentityService, IdentityService>();
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -54,8 +63,6 @@ namespace StudSys
                     };
                 });
 
-            services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("TodoList"));
-
             services.AddControllers();
         }
 
@@ -66,6 +73,8 @@ namespace StudSys
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseDeveloperExceptionPage();
 
             app.UseHttpsRedirection();
 

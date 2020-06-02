@@ -144,7 +144,6 @@ B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnal
 B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.InMemory.dll
-B:\Programming\asp\StudSys\StudSys\obj\Debug\netcoreapp3.1\StudSys.MvcApplicationPartsAssemblyInfo.cache
 B:\Programming\asp\StudSys\StudSys\obj\Debug\netcoreapp3.1\StudSys.genruntimeconfig.cache
 B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
@@ -153,4 +152,13 @@ B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Microsoft.IdentityMod
 B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
 B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
-b:\Programming\asp\StudSys\StudSys\obj\Debug\netcoreapp3.1\StudSys.csproj.CoreCompileInputs.cache
+B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
+B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
+B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
+B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\EntityFramework.SqlServer.dll
+B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\EntityFramework.dll
+B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Microsoft.AspNet.Identity.Core.dll
+B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Microsoft.AspNet.Identity.EntityFramework.dll
+B:\Programming\asp\StudSys\StudSys\obj\Debug\netcoreapp3.1\StudSys.MvcApplicationPartsAssemblyInfo.cache
