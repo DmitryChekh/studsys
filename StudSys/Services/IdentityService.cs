@@ -78,24 +78,26 @@ namespace StudSys.Services
         private AuthResultModel GenerateAuthResultForUser(UserModel userModel)
         {
             var key = JwtOptions.GetSymmetricSecurityKey();
+            var signingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                        new Claim("UserName", userModel.UserName),
-                        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                        new Claim(JwtRegisteredClaimNames.Email, userModel.Email),
-                        new Claim("Role", userModel.Role),
-                        new Claim("id", userModel.Id),
-                    }),
+                    new Claim("UserName", userModel.UserName),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                    new Claim(JwtRegisteredClaimNames.Email, userModel.Email),
+                    new Claim("Role", userModel.Role),
+                    new Claim("id", userModel.Id),
+                }),
                 Expires = DateTime.UtcNow.AddHours(2),
 
-                SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature)
+                SigningCredentials = signingCredentials
             };
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
+
 
             return new AuthResultModel
             {

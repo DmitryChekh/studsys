@@ -161,4 +161,9 @@ B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\EntityFramework.SqlSe
 B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\EntityFramework.dll
 B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Microsoft.AspNet.Identity.Core.dll
 B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Microsoft.AspNet.Identity.EntityFramework.dll
-B:\Programming\asp\StudSys\StudSys\obj\Debug\netcoreapp3.1\StudSys.MvcApplicationPartsAssemblyInfo.cache
+b:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+b:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+b:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+b:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+b:\Programming\asp\StudSys\StudSys\obj\Debug\netcoreapp3.1\StudSys.MvcApplicationPartsAssemblyInfo.cs
+b:\Programming\asp\StudSys\StudSys\obj\Debug\netcoreapp3.1\StudSys.MvcApplicationPartsAssemblyInfo.cache

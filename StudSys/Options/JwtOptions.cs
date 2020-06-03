@@ -12,8 +12,7 @@ namespace StudSys.Options
     {
         public const string Issuer = "EvaSys Issuer"; // издатель токенов
         public const string Audience = "EvaSys Client"; // потребитель токена
-        const string Key = "1qwedsaf894DFskg0564SfslfkHGEEr194";
-        public const int LifeTime = 1;
+        const string Key = "1qwedsaf894DFskg0564";
 
 
         public static SymmetricSecurityKey GetSymmetricSecurityKey()

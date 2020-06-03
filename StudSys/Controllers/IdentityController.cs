@@ -10,9 +10,9 @@ using StudSys.Requests;
 using StudSys.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authorization;
-using ApiRoutes = StudSys.ApiRoutes;
+using ApiRoutes;
 using StudSys.Services.Interfaces;
-
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace StudSys.Controllers
 {
@@ -26,28 +26,7 @@ namespace StudSys.Controllers
             _identityService = identityService;
         }
 
-        //[AllowAnonymous]
-
-        //[Route(ApiRoutes.Identity.Login)]
-        //public ActionResult<string> Post(
-        //  ClientLoginRequest loginRequest)
-        //{
-        //    var claims = new Claim[]
-        //    {
-        //        new Claim(ClaimTypes.NameIdentifier, loginRequest.UserName)
-        //    };
-
-        //    var token = new JwtSecurityToken(
-        //        issuer: JwtOptions.Issuer,
-        //        audience: JwtOptions.Audience,
-        //        claims: claims,
-        //        expires: DateTime.Now.AddHours(1),
-        //        signingCredentials: new SigningCredentials(JwtOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256)
-        //        );
-
-        //    string jwtToken = new JwtSecurityTokenHandler().WriteToken(token);
-        //    return jwtToken;
-        //}
+      
 
         [HttpPost(ApiRoutes.Identity.Register)]
         public async Task<IActionResult> RegisterClient([FromBody]ClientRegistrationRequest request)
@@ -107,6 +86,17 @@ namespace StudSys.Controllers
             }
 
             return Ok(authResponse);
+        }
+
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpGet(ApiRoutes.Identity.CheckJWT)]
+        public IActionResult CheckJWT()
+        {
+            var userNameFromJwt = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "UserName").Value.ToString();
+
+            var response = new { tokenActive = true, userName = userNameFromJwt };
+
+            return Ok(response);
         }
 
     }

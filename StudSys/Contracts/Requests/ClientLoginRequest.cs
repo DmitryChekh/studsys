@@ -9,6 +9,7 @@ namespace StudSys.Requests
     public class ClientLoginRequest
     {
         public string UserName { get; set; }
+
         [DataType(DataType.Password)]
         public string Password { get; set; }
 

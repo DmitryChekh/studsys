@@ -13,7 +13,5 @@ namespace StudSys.Models
         public byte[] AvatarImage { get; set; }
 #pragma warning restore CA1819 // Свойства не должны возвращать массивы
         public int StudGroupId { get;set;}
-
-
     }
 }

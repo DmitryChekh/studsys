@@ -7,10 +7,11 @@ namespace StudSys.Models
 {
     public class GroupModel
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
+        public string GroupName { get; set; }
         public int StudMonitorId { get; set; }
         public int CourseLeaderId { get; set; }
 
-        public ICollection<UserModel> Members { get; set; }
+        //public ICollection<UserModel> Members { get; set; }
     }
 }

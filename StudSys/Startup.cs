@@ -20,6 +20,7 @@ using StudSys.Options;
 using StudSys.Services.Interfaces;
 using StudSys.Services;
 using StudSys.Models;
+using Microsoft.OpenApi.Models;
 
 namespace StudSys
 {
@@ -44,6 +45,7 @@ namespace StudSys
                 .AddEntityFrameworkStores<DataContext>();
 
             services.AddScoped<IIdentityService, IdentityService>();
+            services.AddScoped<IGroupDataService, GroupDataService>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -51,8 +53,8 @@ namespace StudSys
                     options.RequireHttpsMetadata = false;
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
 
@@ -63,7 +65,39 @@ namespace StudSys
                     };
                 });
 
-            services.AddControllers();
+            services.AddSwaggerGen(x =>
+            {
+                x.SwaggerDoc("v0.1", new OpenApiInfo { Title = "StudSys Api", Version = "v0.1" });
+
+                x.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "Jwt authorization header using bearer scheme",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                });
+
+                x.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            },
+                            Scheme = "oauth2",
+                            Name = "Bearer",
+                            In = ParameterLocation.Header,
+                        },
+                        new List<string>()
+                    }
+               });
+            });
+
+
+                services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,9 +113,15 @@ namespace StudSys
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            
+
+            var swaggerOptions = new Options.SwaggerOptions();
+            Configuration.GetSection(nameof(Options.SwaggerOptions)).Bind(swaggerOptions);
+            app.UseSwagger(option => { option.RouteTemplate = swaggerOptions.JSonRoute; });
+            app.UseSwaggerUI(option => { option.SwaggerEndpoint(swaggerOptions.UIEndPoint, swaggerOptions.Description); });
+
             app.UseAuthentication();
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
