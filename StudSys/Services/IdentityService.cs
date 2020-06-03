@@ -29,7 +29,7 @@ namespace StudSys.Services
         public async Task<SimpleResponseModel> RegisterAsync(string email, string firstName, string secondName, 
             string middleName, string password, string role)
         {
-            var existingUser = await _userManager.FindByEmailAsync(email);
+            var existingUser = await _userManager.FindByEmailAsync(email).ConfigureAwait(false);
 
             if(existingUser != null)
             {
@@ -48,7 +48,7 @@ namespace StudSys.Services
                 SecondName = secondName,
             };
 
-            var createdUser = await _userManager.CreateAsync(newUser, password);
+            var createdUser = await _userManager.CreateAsync(newUser, password).ConfigureAwait(false);
 
             if(!createdUser.Succeeded)
             {
@@ -61,9 +61,9 @@ namespace StudSys.Services
 
         public async Task<AuthResultModel> LoginAsync(string username, string password)
         {
-            var existingUser = await _dataContext.Users.SingleOrDefaultAsync(u => u.UserName == username);
+            var existingUser = await _dataContext.Users.SingleOrDefaultAsync(u => u.UserName == username).ConfigureAwait(false);
 
-            if (existingUser != null && await _userManager.CheckPasswordAsync(existingUser, password))
+            if (existingUser != null && await _userManager.CheckPasswordAsync(existingUser, password).ConfigureAwait(false))
             {
                 return GenerateAuthResultForUser(existingUser);
             }

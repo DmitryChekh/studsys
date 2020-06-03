@@ -8,7 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StudSys.Data;
 using StudSys.Models;
-
+#pragma warning disable CA2007 // Попробуйте вызвать ConfigureAwait для ожидаемой задачи
+#pragma warning disable CA1062
 namespace StudSys.Controllers
 {
     [Route("{controller}")]
@@ -84,7 +85,9 @@ namespace StudSys.Controllers
         public async Task<ActionResult<TodoItemModel>> PostTodoItem(TodoItemModel todoItem)
         {
             _context.TodoItems.Add(todoItem);
+
             await _context.SaveChangesAsync();
+
 
             return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
         }
@@ -111,3 +114,5 @@ namespace StudSys.Controllers
         }
     }
 }
+#pragma warning restore CA2007 // Попробуйте вызвать ConfigureAwait для ожидаемой задачи
+#pragma warning restore CA1062

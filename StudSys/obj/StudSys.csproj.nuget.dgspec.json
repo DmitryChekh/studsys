@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "b:\\Programming\\asp\\StudSys\\StudSys\\StudSys.csproj": {}
+    "B:\\Programming\\asp\\StudSys\\StudSys\\StudSys.csproj": {}
   },
   "projects": {
-    "b:\\Programming\\asp\\StudSys\\StudSys\\StudSys.csproj": {
+    "B:\\Programming\\asp\\StudSys\\StudSys\\StudSys.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "b:\\Programming\\asp\\StudSys\\StudSys\\StudSys.csproj",
+        "projectUniqueName": "B:\\Programming\\asp\\StudSys\\StudSys\\StudSys.csproj",
         "projectName": "StudSys",
-        "projectPath": "b:\\Programming\\asp\\StudSys\\StudSys\\StudSys.csproj",
+        "projectPath": "B:\\Programming\\asp\\StudSys\\StudSys\\StudSys.csproj",
         "packagesPath": "C:\\Users\\Дмитрий\\.nuget\\packages\\",
-        "outputPath": "b:\\Programming\\asp\\StudSys\\StudSys\\obj\\",
+        "outputPath": "B:\\Programming\\asp\\StudSys\\StudSys\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Дмитрий\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -38,10 +38,6 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
-            "Microsoft.AspNet.Identity.EntityFramework": {
-              "target": "Package",
-              "version": "[2.2.3, )"
-            },
             "Microsoft.AspNetCore.Authentication": {
               "target": "Package",
               "version": "[2.2.0, )"

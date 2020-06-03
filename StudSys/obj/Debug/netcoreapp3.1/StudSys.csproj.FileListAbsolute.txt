@@ -157,13 +157,9 @@ B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.
 B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
 B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
-B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\EntityFramework.SqlServer.dll
-B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\EntityFramework.dll
-B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Microsoft.AspNet.Identity.Core.dll
-B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Microsoft.AspNet.Identity.EntityFramework.dll
 b:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
 b:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
 b:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
 b:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
-b:\Programming\asp\StudSys\StudSys\obj\Debug\netcoreapp3.1\StudSys.MvcApplicationPartsAssemblyInfo.cs
-b:\Programming\asp\StudSys\StudSys\obj\Debug\netcoreapp3.1\StudSys.MvcApplicationPartsAssemblyInfo.cache
+B:\Programming\asp\StudSys\StudSys\obj\Debug\netcoreapp3.1\StudSys.MvcApplicationPartsAssemblyInfo.cs
+B:\Programming\asp\StudSys\StudSys\obj\Debug\netcoreapp3.1\StudSys.MvcApplicationPartsAssemblyInfo.cache

@@ -62,5 +62,24 @@ namespace StudSys.Controllers
         }
 
 
+        [HttpGet(ApiRoutes.Group.MemberList)]
+        public async Task<ActionResult<IEnumerable<MembersOfGroupResponseModel>>> GetMembersOfGroup([FromBody]MembersOfGroupRequest request)
+        {
+            if (request == null)
+            {
+                return BadRequest("Request model is not correct");
+            }
+
+            var membersListResponse = await _groupDataService.GetAllMembers(request.GroupName);
+
+            if(membersListResponse == null)
+            {
+                return BadRequest("Something wrong");
+            }
+
+            return Ok(membersListResponse);
+        }
+
+
     }
 }
