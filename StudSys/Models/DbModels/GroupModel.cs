@@ -9,8 +9,8 @@ namespace StudSys.Models
     {
         public int Id { get; set; }
         public string GroupName { get; set; }
-        public int StudMonitorId { get; set; }
-        public int CourseLeaderId { get; set; }
+        public string StudMonitorId { get; set; }
+        public string CourseLeaderId { get; set; }
 
         //public ICollection<UserModel> Members { get; set; }
     }

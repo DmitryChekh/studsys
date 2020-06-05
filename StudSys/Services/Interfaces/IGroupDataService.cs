@@ -9,9 +9,9 @@ namespace StudSys.Services.Interfaces
 {
     public interface IGroupDataService
     {
-        public Task<SimpleResponseModel> CreateGroup(string groupname, int monitorid, int courseleaderid);
+        public Task<SimpleResponseModel> CreateGroup(string groupname, string monitorUsername, string courseleaderUsername);
 
-        public Task<IEnumerable<MembersOfGroupResponseModel>> GetAllMembers(string groupname);
+        public Task<IEnumerableResponseModel> GetAllMembers(string groupname);
 
     }
 }

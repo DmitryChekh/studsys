@@ -24,4 +24,9 @@ namespace ApiRoutes
         public const string CreateGroup = "api/group/create";
         public const string MemberList = "api/group/members";
     }
+
+    public static class ClientData
+    {
+        public const string ChangeGroup = "api/{username}/change_group";
+    }
 }

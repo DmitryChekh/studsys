@@ -11,7 +11,7 @@ namespace StudSys.Models
         public bool Success { get; set; }
         public string UserFirstName { get; set; }
         public string UserMiddleName { get; set; }
-        public string UserSecondName { get; set; }
+        public string UserLastName { get; set; }
         public byte[] AvatarImage { get; set; }
         public string UserRole { get; set; }
         public string Username { get; set; }

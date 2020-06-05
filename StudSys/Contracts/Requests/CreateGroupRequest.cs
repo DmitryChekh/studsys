@@ -10,8 +10,8 @@ namespace StudSys.Contracts.Requests
     {
         public string GroupName {get;set;}
 
-        public int MonitorId { get; set; }
+        public string MonitorUsername { get; set; }
 
-        public int CourseLeadId { get; set; }
+        public string CourseLeadUsername { get; set; }
     }
 }

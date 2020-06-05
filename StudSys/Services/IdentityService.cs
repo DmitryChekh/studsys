@@ -26,17 +26,21 @@ namespace StudSys.Services
             _dataContext = dataContext;
         }
 
-        public async Task<SimpleResponseModel> RegisterAsync(string email, string firstName, string secondName, 
+        public async Task<SimpleResponseModel> RegisterAsync(string email, string userName,  string firstName, string lastName, 
             string middleName, string password, string role)
         {
-            var existingUser = await _userManager.FindByEmailAsync(email).ConfigureAwait(false);
+            var existingEmail = await _userManager.FindByEmailAsync(email).ConfigureAwait(false);
+            var existingUsername = await _userManager.FindByNameAsync(userName).ConfigureAwait(false);
 
-            if(existingUser != null)
+            if(existingEmail != null)
             {
                 return new SimpleResponseModel { Success = false, ErrorsMessages = new[] { "User with this email exist" } };
             }
 
-            var userName = email.Substring(0, email.LastIndexOf('@'));
+            if(existingUsername != null)
+            {
+                return new SimpleResponseModel { Success = false, ErrorsMessages = new[] { "User with this username exist" } };
+            }
 
             var newUser = new UserModel
             {
@@ -45,7 +49,7 @@ namespace StudSys.Services
                 Role = role,
                 FirstName = firstName,
                 MiddleName = middleName,
-                SecondName = secondName,
+                LastName = lastName,
             };
 
             var createdUser = await _userManager.CreateAsync(newUser, password).ConfigureAwait(false);
@@ -104,7 +108,7 @@ namespace StudSys.Services
                 Token = tokenHandler.WriteToken(token),
                 Success = true,
                 UserFirstName = userModel.FirstName,
-                UserSecondName = userModel.SecondName,
+                UserLastName = userModel.LastName,
                 UserMiddleName = userModel.MiddleName,
                 AvatarImage = userModel.AvatarImage,
                 UserRole = userModel.Role,

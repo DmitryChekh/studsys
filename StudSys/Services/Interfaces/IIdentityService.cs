@@ -9,7 +9,7 @@ namespace StudSys.Services.Interfaces
     public interface IIdentityService
     {
 
-        public Task<SimpleResponseModel> RegisterAsync(string email, string firstName, string secondName, 
+        public Task<SimpleResponseModel> RegisterAsync(string email, string userName, string firstName, string secondName, 
             string middleName, string password, string role);
         public Task<AuthResultModel> LoginAsync(string username, string password);
     }

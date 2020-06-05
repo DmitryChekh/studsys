@@ -9,6 +9,7 @@ namespace StudSys.Models
     {
         public string UserFirstName { get; set; }
         public string UserMiddleName { get; set; }
-        public string UserSecondName { get; set; }
+        public string UserLastName { get; set; }
+
     }
 }

@@ -51,11 +51,12 @@ namespace StudSys.Controllers
 
             var authResponse = await _identityService.RegisterAsync(
                 request.Email,
+                request.UserName,
                 request.FirstName,
                 request.LastName,
                 request.MiddleName,
                 request.Password,
-                "user");
+                "user").ConfigureAwait(false);
 
 
             if (!authResponse.Success)
@@ -78,7 +79,7 @@ namespace StudSys.Controllers
                 return BadRequest("Request model is not correct");
             }
 
-            var authResponse = await _identityService.LoginAsync(request.UserName, request.Password);
+            var authResponse = await _identityService.LoginAsync(request.UserName, request.Password).ConfigureAwait(false);
 
             if(!authResponse.Success)
             {

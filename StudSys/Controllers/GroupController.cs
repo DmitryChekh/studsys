@@ -49,9 +49,9 @@ namespace StudSys.Controllers
 
             var groupResponse = await _groupDataService.CreateGroup(
                 request.GroupName,
-                request.MonitorId,
-                request.CourseLeadId
-                );
+                request.MonitorUsername,
+                request.CourseLeadUsername
+                ).ConfigureAwait(false);
 
             if (!groupResponse.Success)
             {
@@ -70,7 +70,7 @@ namespace StudSys.Controllers
                 return BadRequest("Request model is not correct");
             }
 
-            var membersListResponse = await _groupDataService.GetAllMembers(request.GroupName);
+            var membersListResponse = await _groupDataService.GetAllMembers(request.GroupName).ConfigureAwait(false);
 
             if(membersListResponse == null)
             {

@@ -16,6 +16,10 @@ namespace StudSys.Requests
 
         [MinLength(2, ErrorMessage = "First name lenght should be more then 1 chars")]
         [MaxLength(50, ErrorMessage = "Firs name lenght should be less then 50 char")]
+        public string UserName { get; set; }
+
+        [MinLength(2, ErrorMessage = "First name lenght should be more then 1 chars")]
+        [MaxLength(50, ErrorMessage = "Firs name lenght should be less then 50 char")]
         public string FirstName { get; set; }
 
         [MinLength(2, ErrorMessage = "Middle name lenght should be more then 1 chars")]

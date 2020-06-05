@@ -27,25 +27,33 @@ namespace StudSys.Services
             _userManager = userManager;
         }
 
-        public async Task<SimpleResponseModel> CreateGroup(string groupname, int monitorid, int courseleaderid)
-        {
-
-            var existingGroup = await _dataContext.Groups.FirstOrDefaultAsync(g => g.GroupName == groupname);
+        //TODO: Сделать возможность сделать monitorID, courseleaderID нуллябельными
+        public async Task<SimpleResponseModel> CreateGroup(string groupname, string monitorUsername, string courseleadUsername)
+        { 
+            var existingGroup = await _dataContext.Groups.FirstOrDefaultAsync(g => g.GroupName == groupname).ConfigureAwait(false);
 
             if (existingGroup != null)
             {
                 return new SimpleResponseModel { Success = false, ErrorsMessages = new[] { "Group with this name already exist" } };
             }
 
+            var courseleader = await _userManager.FindByNameAsync(courseleadUsername).ConfigureAwait(false);
+            var monitor = await _userManager.FindByNameAsync(monitorUsername).ConfigureAwait(false);
+
+            if (courseleader == null && monitor == null)
+            {
+                return new SimpleResponseModel { Success = false, ErrorsMessages = new[] { "Invalid monitorUsername or courseleadUsername" } };
+            }
+
             var group = new GroupModel
             {
                 GroupName = groupname,
-                CourseLeaderId = courseleaderid,
-                StudMonitorId = monitorid
+                CourseLeaderId = courseleader.Id,
+                StudMonitorId= monitor.Id
             };
 
      
-            var createdGroup = await _dataContext.Groups.AddAsync(group);
+            var createdGroup = await _dataContext.Groups.AddAsync(group).ConfigureAwait(false);
 
 
             if (createdGroup.State != EntityState.Added)
@@ -53,42 +61,37 @@ namespace StudSys.Services
                 return new SimpleResponseModel { Success = false, ErrorsMessages = new[] { "Something wrong. Group is not added." } };
             }
 
-            await _dataContext.SaveChangesAsync();
+            await _dataContext.SaveChangesAsync().ConfigureAwait(false);
 
 
             return new SimpleResponseModel { Success = true };
         }
 
-        /*
-         *         public async Task<ActionResult<IEnumerable<TodoItemModel>>> GetTodoItems()
+        //TODO: Добавить проверку на несуществующую группу
+        public async Task<IEnumerableResponseModel> GetAllMembers(string groupname)
         {
-            return await _context.TodoItems.ToListAsync();
-        }
-         */
+            var existingGroup = await _dataContext.Groups.FirstOrDefaultAsync(g => g.GroupName == groupname).ConfigureAwait(false);
 
-        public async Task<IEnumerable<MembersOfGroupResponseModel>> GetAllMembers(string groupname)
-        {
-            var existingGroup = await _dataContext.Groups.FirstOrDefaultAsync(g => g.GroupName == groupname);
+            if (existingGroup == null)
+            {
+                return new IEnumerableResponseModel { Success = false };
+            }
 
-            //if (existingGroup == null)
-            //{
-            //    return new SimpleResponseModel { Success = false, ErrorsMessages = new[] { "Group doesn't exist" } };
-            //}
 
             var membersList = await _userManager.Users.Where(u => u.StudGroupId == existingGroup.Id).Select(u => new MembersOfGroupResponseModel
             {
                 UserFirstName = u.FirstName,
                 UserMiddleName = u.MiddleName,
-                UserSecondName = u.SecondName
+                UserLastName = u.LastName
             })
-            .ToListAsync();
+            .ToListAsync().ConfigureAwait(false);
 
-            if(membersList == null)
+            if (membersList == null)
             {
-
+                return new IEnumerableResponseModel { Success = false };
             }
 
-            return membersList;
+            return new IEnumerableResponseModel { entities = membersList , Success = true};
 
         }
 

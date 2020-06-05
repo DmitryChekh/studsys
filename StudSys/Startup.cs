@@ -46,6 +46,7 @@ namespace StudSys
 
             services.AddScoped<IIdentityService, IdentityService>();
             services.AddScoped<IGroupDataService, GroupDataService>();
+            services.AddScoped<IClientDataService, ClientDataService>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
