@@ -12,7 +12,7 @@ using StudSys.Options;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-
+using StudSys.Models.DbModels;
 
 namespace StudSys.Services
 {
@@ -68,13 +68,13 @@ namespace StudSys.Services
         }
 
         //TODO: Добавить проверку на несуществующую группу
-        public async Task<IEnumerableResponseModel> GetAllMembers(string groupname)
+        public async Task<EnumerableResponseModel> GetAllMembers(string groupname)
         {
             var existingGroup = await _dataContext.Groups.FirstOrDefaultAsync(g => g.GroupName == groupname).ConfigureAwait(false);
 
             if (existingGroup == null)
             {
-                return new IEnumerableResponseModel { Success = false };
+                return new EnumerableResponseModel { Success = false };
             }
 
 
@@ -88,10 +88,10 @@ namespace StudSys.Services
 
             if (membersList == null)
             {
-                return new IEnumerableResponseModel { Success = false };
+                return new EnumerableResponseModel { Success = false };
             }
 
-            return new IEnumerableResponseModel { entities = membersList , Success = true};
+            return new EnumerableResponseModel { entities = membersList , Success = true};
 
         }
 

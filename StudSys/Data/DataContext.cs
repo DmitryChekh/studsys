@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using StudSys.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using StudSys.Models.DbModels;
 
 namespace StudSys.Data
 {
@@ -16,5 +17,6 @@ namespace StudSys.Data
 
         public DbSet<TodoItemModel> TodoItems { get; set; }
         public DbSet<GroupModel> Groups { get; set; }
+        public DbSet<SubjectModel> Subject { get; set; }
     }
 }

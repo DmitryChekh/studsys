@@ -29,4 +29,9 @@ namespace ApiRoutes
     {
         public const string ChangeGroup = "api/{username}/change_group";
     }
+
+    public static class Subject
+    {
+        public const string CreateSubject = "api/subject*create";
+    }
 }

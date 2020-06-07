@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace StudSys.Models
 {
-    public class IEnumerableResponseModel
+    public class EnumerableResponseModel
     {
         public IEnumerable<MembersOfGroupResponseModel> entities { get; set; }
 

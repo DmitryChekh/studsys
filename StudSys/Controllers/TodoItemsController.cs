@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StudSys.Data;
-using StudSys.Models;
+using StudSys.Models.DbModels;
 #pragma warning disable CA2007 // Попробуйте вызвать ConfigureAwait для ожидаемой задачи
 #pragma warning disable CA1062
 namespace StudSys.Controllers

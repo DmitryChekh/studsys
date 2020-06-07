@@ -21,6 +21,7 @@ using StudSys.Services.Interfaces;
 using StudSys.Services;
 using StudSys.Models;
 using Microsoft.OpenApi.Models;
+using StudSys.Models.DbModels;
 
 namespace StudSys
 {
@@ -47,6 +48,7 @@ namespace StudSys
             services.AddScoped<IIdentityService, IdentityService>();
             services.AddScoped<IGroupDataService, GroupDataService>();
             services.AddScoped<IClientDataService, ClientDataService>();
+            services.AddScoped<ISubjectService, SubjectService>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>

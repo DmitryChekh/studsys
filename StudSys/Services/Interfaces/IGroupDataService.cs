@@ -11,7 +11,7 @@ namespace StudSys.Services.Interfaces
     {
         public Task<SimpleResponseModel> CreateGroup(string groupname, string monitorUsername, string courseleaderUsername);
 
-        public Task<IEnumerableResponseModel> GetAllMembers(string groupname);
+        public Task<EnumerableResponseModel> GetAllMembers(string groupname);
 
     }
 }
