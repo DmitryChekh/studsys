@@ -32,6 +32,12 @@ namespace ApiRoutes
 
     public static class Subject
     {
-        public const string CreateSubject = "api/subject*create";
+        public const string CreateSubject = "api/subject/create";
+        public const string LinkGroupToSubject = "api/subject/addgroup";
+    }
+
+    public static class Lesson
+    {
+        public const string CreateSubjectLesson = "api/lesson/create";
     }
 }

@@ -13,18 +13,18 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using StudSys.Models.DbModels;
+using Microsoft.EntityFrameworkCore.SqlServer;
+using Microsoft.Data.SqlClient;
 
 namespace StudSys.Services
 {
-    public class SubjectService: ISubjectService
+    public class SubjectService : ISubjectService
     {
         private readonly DataContext _dataContext;
-        private readonly UserManager<UserModel> _userManager;
 
-        public SubjectService(DataContext dataContext, UserManager<UserModel> userManager)
+        public SubjectService(DataContext dataContext)
         {
             _dataContext = dataContext;
-            _userManager = userManager;
         }
 
         public async Task<SimpleResponseModel> CreateSubject(string subjectname)
@@ -55,5 +55,31 @@ namespace StudSys.Services
 
             return new SimpleResponseModel { Success = true };
         }
+
+
+        //TODO: решить проблему с отловом SqlException
+        public async Task<SimpleResponseModel> LinkGroupToSubject(int groupid, int subjectid)
+        {
+            var subjectgroup = new SubjectGroupModel
+            {
+                SubjectId = subjectid,
+                GroupId = groupid
+            };
+
+            try
+            {
+                await _dataContext.SubjectGroup.AddAsync(subjectgroup).ConfigureAwait(false);
+                await _dataContext.SaveChangesAsync().ConfigureAwait(false);
+            }
+            catch
+            {
+                return new SimpleResponseModel { Success = false, ErrorsMessages = new[] { "Invalid subject ID or group ID" } };
+            }
+
+
+
+            return new SimpleResponseModel { Success = true };
+        }
+
     }
 }

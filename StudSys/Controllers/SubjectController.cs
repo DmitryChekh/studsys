@@ -38,12 +38,26 @@ namespace StudSys.Controllers
 
             var userRole = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Role").Value.ToString();
 
-            if(userRole != "admin")
+            if (userRole != "admin")
             {
                 return Forbid("Not allowed");
             }
 
             var result = await _subjectService.CreateSubject(request.SubjectName).ConfigureAwait(false);
+
+            return Ok(result);
+        }
+
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost(ApiRoutes.Subject.LinkGroupToSubject)]
+        public async Task<IActionResult> LinkGroupToSubject([FromBody] LinkGroupToSubjectRequest request)
+        {
+            if(request == null)
+            {
+                return BadRequest("Request is empty");
+            }
+
+            var result = await _subjectService.LinkGroupToSubject(request.Groupid, request.Subjectid).ConfigureAwait(false);
 
             return Ok(result);
         }
