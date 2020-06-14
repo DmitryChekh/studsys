@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using StudSys.Contracts.Responses;
 using StudSys.Models;
 
 namespace StudSys.Services.Interfaces

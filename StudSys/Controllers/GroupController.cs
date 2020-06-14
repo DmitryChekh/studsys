@@ -15,6 +15,9 @@ using StudSys.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using StudSys.Models;
 using StudSys.Contracts.Requests;
+using StudSys.Contracts.Responses;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace StudSys.Controllers
 {
@@ -63,7 +66,7 @@ namespace StudSys.Controllers
 
 
         [HttpGet(ApiRoutes.Group.MemberList)]
-        public async Task<ActionResult<IEnumerable<MembersOfGroupResponseModel>>> GetMembersOfGroup([FromBody]MembersOfGroupRequest request)
+        public async Task<ActionResult> GetMembersOfGroup([FromBody]MembersOfGroupRequest request)
         {
             if (request == null)
             {
@@ -78,6 +81,26 @@ namespace StudSys.Controllers
             }
 
             return Ok(membersListResponse);
+        }
+
+
+        // TODO: Временное решение, чтобы посмотреть работает ли. Сделать newtonsoft основным сериализатором
+        [HttpGet(ApiRoutes.Group.GetAllSubjectGroup)]
+        public async Task<ActionResult> GetAllSubjectOfGroup([FromBody]CollectionOfSubjectGroupRequest request)
+        {
+            if (request == null)
+            {
+                return BadRequest("Request model is not correct");
+            }
+
+            var subjectGroupList = await _groupDataService.GetAllSubjectGroup(request.GroupId).ConfigureAwait(false);
+
+            if (subjectGroupList == null)
+            {
+                return BadRequest("Something wrong");
+            }
+
+            return Ok(subjectGroupList);
         }
 
 

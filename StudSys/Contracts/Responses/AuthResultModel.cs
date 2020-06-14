@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StudSys.Models
+namespace StudSys.Contracts.Responses
 {
     public class AuthResultModel
     {

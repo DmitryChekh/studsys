@@ -13,6 +13,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using StudSys.Models.DbModels;
+using StudSys.Contracts.Responses;
 
 namespace StudSys.Services
 {

@@ -22,5 +22,7 @@ namespace StudSys.Data
         public DbSet<SubjectLessonModel> SubjectLesson { get; set; }
 
         public DbSet<SubjectGroupModel> SubjectGroup { get; set; }
+
+        public DbSet<LessonVisitModel> LessonVisits { get; set; }
     }
 }

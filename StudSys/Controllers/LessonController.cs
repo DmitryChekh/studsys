@@ -29,14 +29,28 @@ namespace StudSys.Controllers
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost(ApiRoutes.Lesson.CreateSubjectLesson)]
-        public async Task<IActionResult> CreateSubjectLesson([FromBody]CreateSubjectLessonRequest request)
+        public async Task<IActionResult> CreateSubjectLessonAsync([FromBody]CreateSubjectLessonRequest request)
         {
             if(request == null)
             {
                 return BadRequest("Empty request body");
             }
 
-            var result = await _lessonService.CreateSubjectLesson(request.SubjectId, request.GroupId ,request.utxDateTime, request.TypeId).ConfigureAwait(false);
+            var result = await _lessonService.CreateSubjectLesson(request.SubjectId, request.GroupId ,request.UtxDateTime, request.TypeId).ConfigureAwait(false);
+
+            return Ok(result);
+        }
+
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost(ApiRoutes.Lesson.LessonVisit)]
+        public async Task<IActionResult> GetLessonVisitsAsync([FromBody]GetLessonVisitsRequest request)
+        {
+            if (request == null)
+            {
+                return BadRequest("Empty request body");
+            }
+
+            var result = await _lessonService.GetVisitsOfLesson(request.SubjectId, request.GroupId, request.DateTime);
 
             return Ok(result);
         }

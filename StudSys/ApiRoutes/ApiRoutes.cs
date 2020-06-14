@@ -23,11 +23,13 @@ namespace ApiRoutes
     {
         public const string CreateGroup = "api/group/create";
         public const string MemberList = "api/group/members";
+        public const string GetAllSubjectGroup = "api/group/subjects";
     }
 
     public static class ClientData
     {
         public const string ChangeGroup = "api/{username}/change_group";
+
     }
 
     public static class Subject
@@ -39,5 +41,6 @@ namespace ApiRoutes
     public static class Lesson
     {
         public const string CreateSubjectLesson = "api/lesson/create";
+        public const string LessonVisit = "api/group/lesson/visit";
     }
 }

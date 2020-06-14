@@ -22,6 +22,7 @@ using StudSys.Services;
 using StudSys.Models;
 using Microsoft.OpenApi.Models;
 using StudSys.Models.DbModels;
+using Newtonsoft.Json;
 
 namespace StudSys
 {
@@ -101,7 +102,8 @@ namespace StudSys
             });
 
 
-                services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

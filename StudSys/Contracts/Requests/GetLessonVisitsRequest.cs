@@ -5,13 +5,10 @@ using System.Threading.Tasks;
 
 namespace StudSys.Contracts.Requests
 {
-    public class CreateSubjectLessonRequest
+    public class GetLessonVisitsRequest
     {
-        public int SubjectId { get; set; }
         public int GroupId { get; set; }
-        public int UtxDateTime { get; set; }
-
-        public int TypeId { get; set; }
-
+        public int SubjectId { get; set; }
+        public double DateTime { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using StudSys.Contracts.Responses;
 using StudSys.Models;
 
 
@@ -12,6 +13,8 @@ namespace StudSys.Services.Interfaces
         public Task<SimpleResponseModel> CreateSubject(string subjectname);
 
         public Task<SimpleResponseModel> LinkGroupToSubject(int groupid, int subjectid);
+
+
 
     }
 }

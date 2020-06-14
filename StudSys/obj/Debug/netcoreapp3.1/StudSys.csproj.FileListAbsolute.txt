@@ -161,5 +161,8 @@ b:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
 b:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
 b:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
 b:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+B:\Programming\asp\StudSys\StudSys\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
 B:\Programming\asp\StudSys\StudSys\obj\Debug\netcoreapp3.1\StudSys.MvcApplicationPartsAssemblyInfo.cs
 B:\Programming\asp\StudSys\StudSys\obj\Debug\netcoreapp3.1\StudSys.MvcApplicationPartsAssemblyInfo.cache

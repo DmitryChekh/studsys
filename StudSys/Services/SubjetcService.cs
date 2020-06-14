@@ -15,6 +15,7 @@ using System.Text;
 using StudSys.Models.DbModels;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.Data.SqlClient;
+using StudSys.Contracts.Responses;
 
 namespace StudSys.Services
 {
@@ -60,6 +61,13 @@ namespace StudSys.Services
         //TODO: решить проблему с отловом SqlException
         public async Task<SimpleResponseModel> LinkGroupToSubject(int groupid, int subjectid)
         {
+            var existingLink = _dataContext.SubjectGroup.Where(x => x.GroupId == groupid && x.SubjectId == subjectid);
+
+            if(existingLink != null)
+            {
+                return new SimpleResponseModel { Success = false, ErrorsMessages = new[] { "This link already exist" } };
+            }
+
             var subjectgroup = new SubjectGroupModel
             {
                 SubjectId = subjectid,
@@ -80,6 +88,8 @@ namespace StudSys.Services
 
             return new SimpleResponseModel { Success = true };
         }
+
+
 
     }
 }

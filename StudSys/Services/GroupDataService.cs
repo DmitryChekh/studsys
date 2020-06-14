@@ -13,6 +13,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using StudSys.Models.DbModels;
+using StudSys.Contracts.Responses;
 
 namespace StudSys.Services
 {
@@ -67,7 +68,6 @@ namespace StudSys.Services
             return new SimpleResponseModel { Success = true };
         }
 
-        //TODO: Добавить проверку на несуществующую группу
         public async Task<EnumerableResponseModel> GetAllMembers(string groupname)
         {
             var existingGroup = await _dataContext.Groups.FirstOrDefaultAsync(g => g.GroupName == groupname).ConfigureAwait(false);
@@ -91,8 +91,30 @@ namespace StudSys.Services
                 return new EnumerableResponseModel { Success = false };
             }
 
-            return new EnumerableResponseModel { entities = membersList , Success = true};
+            return new EnumerableResponseModel { Entities = membersList , Success = true};
 
+        }
+
+        // TODO: Попробовать написать linq запрос через джойн
+        public async Task<EnumerableResponseModel> GetAllSubjectGroup(int groupid)
+        {
+
+            var subjectGroupList = await (from subjectGroup in _dataContext.SubjectGroup
+                                          join subject in _dataContext.Subject on subjectGroup.SubjectId equals subject.Id
+                                          where subjectGroup.GroupId == groupid
+                                          select new SubjectGroupResponseModel
+                                          {
+                                              Id = subjectGroup.SubjectId,
+                                              SubjectName = subject.SubjectName
+                                          }).ToListAsync().ConfigureAwait(false);
+
+
+            if (subjectGroupList == null)
+            {
+                return new EnumerableResponseModel { Success = false };
+            }
+
+            return new EnumerableResponseModel { Entities = subjectGroupList, Success = true };
         }
 
     }
