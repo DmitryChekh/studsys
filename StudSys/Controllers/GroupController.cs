@@ -64,8 +64,9 @@ namespace StudSys.Controllers
             return Ok(groupResponse);
         }
 
-
-        [HttpGet(ApiRoutes.Group.MemberList)]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Authorize(Roles = "student")]
+        [HttpPost(ApiRoutes.Group.MemberList)]
         public async Task<ActionResult> GetMembersOfGroup([FromBody]MembersOfGroupRequest request)
         {
             if (request == null)
@@ -84,8 +85,7 @@ namespace StudSys.Controllers
         }
 
 
-        // TODO: Временное решение, чтобы посмотреть работает ли. Сделать newtonsoft основным сериализатором
-        [HttpGet(ApiRoutes.Group.GetAllSubjectGroup)]
+        [HttpPost(ApiRoutes.Group.GetAllSubjectGroup)]
         public async Task<ActionResult> GetAllSubjectOfGroup([FromBody]CollectionOfSubjectGroupRequest request)
         {
             if (request == null)

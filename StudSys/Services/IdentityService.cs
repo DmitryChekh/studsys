@@ -14,6 +14,7 @@ using System.Security.Claims;
 using System.Text;
 using StudSys.Models.DbModels;
 using StudSys.Contracts.Responses;
+using Newtonsoft.Json;
 
 namespace StudSys.Services
 {
@@ -29,7 +30,7 @@ namespace StudSys.Services
         }
 
         public async Task<SimpleResponseModel> RegisterAsync(string email, string userName,  string firstName, string lastName, 
-            string middleName, string password, string role)
+            string middleName, string password, int groupid)
         {
             var existingEmail = await _userManager.FindByEmailAsync(email).ConfigureAwait(false);
             var existingUsername = await _userManager.FindByNameAsync(userName).ConfigureAwait(false);
@@ -48,13 +49,15 @@ namespace StudSys.Services
             {
                 Email = email,
                 UserName = userName,
-                Role = role,
                 FirstName = firstName,
                 MiddleName = middleName,
                 LastName = lastName,
+                StudGroupId = groupid
             };
 
             var createdUser = await _userManager.CreateAsync(newUser, password).ConfigureAwait(false);
+
+            await _userManager.AddToRoleAsync(newUser, "student");
 
             if(!createdUser.Succeeded)
             {
@@ -71,7 +74,7 @@ namespace StudSys.Services
 
             if (existingUser != null && await _userManager.CheckPasswordAsync(existingUser, password).ConfigureAwait(false))
             {
-                return GenerateAuthResultForUser(existingUser);
+                return await GenerateAuthResultForUser(existingUser);
             }
             else
             {
@@ -80,9 +83,14 @@ namespace StudSys.Services
         }
 
 
-
-        private AuthResultModel GenerateAuthResultForUser(UserModel userModel)
+        // TODO: Решить проблему с Roles
+        private async Task<AuthResultModel> GenerateAuthResultForUser(UserModel userModel)
         {
+            IdentityOptions _options = new IdentityOptions();
+            var roles = await _userManager.GetRolesAsync(userModel);
+
+            var jsRoles = JsonConvert.SerializeObject(roles);
+
             var key = JwtOptions.GetSymmetricSecurityKey();
             var signingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
@@ -94,13 +102,19 @@ namespace StudSys.Services
                     new Claim("UserName", userModel.UserName),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim(JwtRegisteredClaimNames.Email, userModel.Email),
-                    new Claim("Role", userModel.Role),
                     new Claim("id", userModel.Id),
                 }),
+               
                 Expires = DateTime.UtcNow.AddHours(2),
 
                 SigningCredentials = signingCredentials
             };
+
+            foreach (var role in roles)
+            {
+                tokenDescriptor.Subject.AddClaim(new Claim(ClaimTypes.Role, role));
+            }
+
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
@@ -113,8 +127,9 @@ namespace StudSys.Services
                 UserLastName = userModel.LastName,
                 UserMiddleName = userModel.MiddleName,
                 AvatarImage = userModel.AvatarImage,
-                UserRole = userModel.Role,
+                UserRole = roles,
                 Username = userModel.UserName,
+
             };
 
         }

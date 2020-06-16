@@ -30,5 +30,7 @@ namespace StudSys.Requests
         [MaxLength(50, ErrorMessage = "Last name lenght should be less then 50 char")]
         public string LastName { get; set; }
 
+        public int GroupId { get; set; }
+
     }
 }

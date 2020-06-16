@@ -44,6 +44,7 @@ namespace StudSys
                 options => options.UseSqlServer(connectionString));
 
             services.AddIdentity<UserModel, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<DataContext>();
 
             services.AddScoped<IIdentityService, IdentityService>();
@@ -51,6 +52,7 @@ namespace StudSys
             services.AddScoped<IClientDataService, ClientDataService>();
             services.AddScoped<ISubjectService, SubjectService>();
             services.AddScoped<ILessonService, LessonService>();
+            services.AddScoped<IRoleService, RoleService>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -119,6 +121,9 @@ namespace StudSys
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(
+                options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             var swaggerOptions = new Options.SwaggerOptions();
             Configuration.GetSection(nameof(Options.SwaggerOptions)).Bind(swaggerOptions);

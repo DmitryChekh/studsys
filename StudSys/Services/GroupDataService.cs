@@ -14,6 +14,7 @@ using System.Security.Claims;
 using System.Text;
 using StudSys.Models.DbModels;
 using StudSys.Contracts.Responses;
+using Microsoft.AspNetCore.Authorization;
 
 namespace StudSys.Services
 {
@@ -29,6 +30,8 @@ namespace StudSys.Services
         }
 
         //TODO: Сделать возможность сделать monitorID, courseleaderID нуллябельными
+
+
         public async Task<SimpleResponseModel> CreateGroup(string groupname, string monitorUsername, string courseleadUsername)
         { 
             var existingGroup = await _dataContext.Groups.FirstOrDefaultAsync(g => g.GroupName == groupname).ConfigureAwait(false);
@@ -67,6 +70,7 @@ namespace StudSys.Services
 
             return new SimpleResponseModel { Success = true };
         }
+
 
         public async Task<EnumerableResponseModel> GetAllMembers(string groupname)
         {

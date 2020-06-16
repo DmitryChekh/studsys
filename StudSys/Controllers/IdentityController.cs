@@ -36,13 +36,6 @@ namespace StudSys.Controllers
                 return BadRequest("Request model is not correct");
             }
 
-            //var userRole = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Role").Value.ToString();
-
-            //if (userRole != "admin")
-            //{
-            //    return Forbid();
-            //}
-
 
             if (!ModelState.IsValid)
             {
@@ -56,7 +49,7 @@ namespace StudSys.Controllers
                 request.LastName,
                 request.MiddleName,
                 request.Password,
-                "user").ConfigureAwait(false);
+                request.GroupId).ConfigureAwait(false);
 
 
             if (!authResponse.Success)
@@ -74,7 +67,7 @@ namespace StudSys.Controllers
         [HttpPost(ApiRoutes.Identity.Login)]
         public async Task<IActionResult> Login([FromBody]ClientLoginRequest request)
         {
-            if(request == null)
+            if (request == null)
             {
                 return BadRequest("Request model is not correct");
             }

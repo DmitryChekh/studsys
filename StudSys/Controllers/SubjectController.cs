@@ -31,9 +31,9 @@ namespace StudSys.Controllers
         [HttpPost(ApiRoutes.Subject.CreateSubject)]
         public async Task<IActionResult> CreateSubject([FromBody]CreateSubjectRequest request)
         {
-            if(request == null)
+            if (request == null)
             {
-                return BadRequest("Request is empty");
+                return BadRequest("Request model is not correct");
             }
 
             var userRole = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Role").Value.ToString();
@@ -52,9 +52,9 @@ namespace StudSys.Controllers
         [HttpPost(ApiRoutes.Subject.LinkGroupToSubject)]
         public async Task<IActionResult> LinkGroupToSubject([FromBody] LinkGroupToSubjectRequest request)
         {
-            if(request == null)
+            if (request == null)
             {
-                return BadRequest("Request is empty");
+                return BadRequest("Request model is not correct");
             }
 
             var result = await _subjectService.LinkGroupToSubject(request.Groupid, request.Subjectid).ConfigureAwait(false);

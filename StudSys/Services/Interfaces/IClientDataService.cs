@@ -13,5 +13,7 @@ namespace StudSys.Services.Interfaces
         public Task<SimpleResponseModel> ChangeGroupToUser(string username, int groupid);
 
 
+
+
     }
 }

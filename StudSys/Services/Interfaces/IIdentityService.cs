@@ -11,7 +11,7 @@ namespace StudSys.Services.Interfaces
     {
 
         public Task<SimpleResponseModel> RegisterAsync(string email, string userName, string firstName, string secondName, 
-            string middleName, string password, string role);
+            string middleName, string password, int groupid);
         public Task<AuthResultModel> LoginAsync(string username, string password);
     }
 }

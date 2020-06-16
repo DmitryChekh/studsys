@@ -22,11 +22,12 @@ namespace StudSys.Services
 
         private readonly DataContext _dataContext;
         private readonly UserManager<UserModel> _userManager;
-
-        public ClientDataService(DataContext dataContext, UserManager<UserModel> userManager)
+        private readonly RoleManager<IdentityRole> _roleManager;
+        public ClientDataService(DataContext dataContext, UserManager<UserModel> userManager, RoleManager<IdentityRole> roleManager)
         {
             _dataContext = dataContext;
             _userManager = userManager;
+            _roleManager = roleManager;
         }
         public async Task<SimpleResponseModel> ChangeGroupToUser(string username, int groupid)
         {
@@ -56,5 +57,7 @@ namespace StudSys.Services
             return new SimpleResponseModel { Success = true };
 
         }
+
+     
     }
 }

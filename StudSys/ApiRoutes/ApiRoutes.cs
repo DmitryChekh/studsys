@@ -43,4 +43,12 @@ namespace ApiRoutes
         public const string CreateSubjectLesson = "api/lesson/create";
         public const string LessonVisit = "api/group/lesson/visit";
     }
+
+    public static class Role
+    {
+        public const string CreateRole = "api/role/create";
+        public const string DeleteRole = "api/role/delete";
+        public const string GetAllRoles = "api/role/list";
+        public const string ChangeUserRole = "api/role/user/change";
+    }
 }

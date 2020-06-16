@@ -19,6 +19,7 @@ using StudSys.Contracts.Requests;
 namespace StudSys.Controllers
 {
     [ApiController]
+
     public class LessonController : ControllerBase
     {
         private readonly ILessonService _lessonService;
@@ -31,9 +32,9 @@ namespace StudSys.Controllers
         [HttpPost(ApiRoutes.Lesson.CreateSubjectLesson)]
         public async Task<IActionResult> CreateSubjectLessonAsync([FromBody]CreateSubjectLessonRequest request)
         {
-            if(request == null)
+            if (request == null)
             {
-                return BadRequest("Empty request body");
+                return BadRequest("Request model is not correct");
             }
 
             var result = await _lessonService.CreateSubjectLesson(request.SubjectId, request.GroupId ,request.UtxDateTime, request.TypeId).ConfigureAwait(false);
@@ -47,13 +48,15 @@ namespace StudSys.Controllers
         {
             if (request == null)
             {
-                return BadRequest("Empty request body");
+                return BadRequest("Request model is not correct");
             }
 
             var result = await _lessonService.GetVisitsOfLesson(request.SubjectId, request.GroupId, request.DateTime);
 
             return Ok(result);
         }
+
+
 
     }
 }
